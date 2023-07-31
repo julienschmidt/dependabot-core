@@ -102,10 +102,6 @@ module Dependabot
         raise Dependabot::RepoNotFound, source
       end
 
-      def ecosystem_versions
-        nil
-      end
-
       private
 
       def fetch_file_if_present(filename, fetch_submodules: false)
