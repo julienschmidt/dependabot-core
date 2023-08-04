@@ -58,6 +58,7 @@ module Dependabot
     end
 
     # rubocop:disable Metrics/MethodLength
+    # rubocop:disable Metrics/AbcSize
     def handle_parser_error(error)
       # This happens if the repo gets removed after a job gets kicked off.
       # The service will handle the removal without any prompt from the updater,
@@ -132,11 +133,11 @@ module Dependabot
             error.backtrace.each { |line| Dependabot.logger.error line }
 
             service.record_unknown_error(error_details: {
-              "error": error,
+              error: error,
               "error-class": error.class.to_s,
               "error-backtrace": error.backtrace,
               "package-manager": job.package_manager,
-              "message": error.message,
+              message: error.message
             })
             service.capture_exception(error: error, job: job)
 
@@ -151,5 +152,6 @@ module Dependabot
       )
     end
     # rubocop:enable Metrics/MethodLength
+    # rubocop:enable Metrics/AbcSize
   end
 end
